@@ -1,0 +1,38 @@
+package com.cermati.scraper;
+
+import java.io.File;
+
+import java.io.IOException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+public class App {
+	
+	public static void main(String[] args){
+		try{
+			Document doc = Jsoup.connect(“https://www.cermati.com/karir”).get();
+			System.out.printf(“title: %s\n”, doc.title());
+			Elements repositories = doc.getElementsByClass(“repo-item”);
+			for (Element repository : repositories) {
+			String repositoryDepartment = repository.getElementsByClass(“repo-item-department”).text();
+			String repositoryTitle = repository.getElelmentsByClass(“repo-item-Title”).text():
+			String repositoryDescription = repository.getElementsByClass(“repo-item-description”).text();
+			String repositoryQualification = repository.getElementsByClass(“repo-item-qualification”).text();
+			String repositoryPosted = repository.getElementByClass(“repo-item-posted-by”).text();
+			String repositoryGithubName = repository.getElementsByClass(“repo-item-full-name”).text();
+			String repositoryGithubLink = “https://github.com/” + repositoryGithubName.replaceAll(“[()]”, “”);
+      
+			System.out.println(repositoryDepartment + “_” + repositoryDepartment);
+			System.out.println(repositoryTitle + “_” + repositoryTitle);
+			System.out.println(“\t” + repositoryDescription);
+			System.out.println(repositoryQualification + “_” + repositoryTitle);
+			System.out.println(repositoryPosted + “_” + repositoryTitle);					
+			System.out.println(“\t” + repositoryGithubLink):
+			System.out.println(“\n”);
+			}
+      
+		} catch (IOException e) {
+		e.printStackTrace();
+	}
+}
